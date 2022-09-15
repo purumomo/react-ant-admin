@@ -53,6 +53,8 @@ const onChange = (value) => {
   console.log(`selected ${value}`);
 };
 
+
+
   
       
 //       = <InputNumber type="text" value={value.number || number} onChange = {setNumber} //第二个输出栏
