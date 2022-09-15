@@ -5,6 +5,7 @@ import { Line as LineEchart } from "@/components/echarts";
 import MyTable from "@/components/table";
 import MyPagination from "@/components/pagination";
 import "./index.less";
+import MyCaculateForm from "@/components/CaculateForm/CaculateB.js";
 
 const getOpt = () => ({
   xAxis: {
@@ -57,7 +58,7 @@ const echartStyle = {
 const getTableTitle = () => {
   return (
     <Row justify="space-between" align="center" gutter={80}>
-      <Col style={{ lineHeight: "32px" }}>访问统计</Col>
+      <Col style={{ lineHeight: "32px" }}>奖金明细</Col>
     </Row>
   );
 };
@@ -111,6 +112,7 @@ function useVistor() {
     getList,
     total,
     pageInfo,
+    
   };
 }
 
@@ -128,8 +130,9 @@ export default function Vistor() {
   } = useVistor();
   return (
     <div className="vistor-container">
-      <Row gutter={[20, 20]}>
-        <Col span={6}>
+      <Row gutter={[50, 20]}>
+        {/* <CaculateForm/> */}
+        {/* <Col span={6}>
           <Card className="cards">
             <p className="title">访问量</p>
             <p className="num">
@@ -139,8 +142,8 @@ export default function Vistor() {
               <LineEchart option={visitorOpt} style={echartStyle} />
             </div>
           </Card>
-        </Col>
-        <Col span={6}>
+        </Col> */}
+        {/* <Col span={6}>
           <Card className="cards">
             <p className="title">处理次数</p>
             <p className="num">
@@ -166,8 +169,8 @@ export default function Vistor() {
               />
             </div>
           </Card>
-        </Col>
-        <Col span={6}>
+        </Col> */}
+        {/* <Col span={6}>
           <Card className="cards">
             <p className="title">今日处理</p>
             <p className="num">{sumDeal}</p>
@@ -182,16 +185,17 @@ export default function Vistor() {
               />
             </div>
           </Card>
-        </Col>
+        </Col> */}
       </Row>
-      <MyTable
+      {/* <MyTable
         title={getTableTitle}
         dataSource={tableData}
         columns={tableCol}
         rowKey="s_id"
         saveKey="vistorTb"
         pagination={false}
-      />
+      /> */}
+      <MyCaculateForm/>
       <MyPagination
         page={pageInfo.page}
         change={getList}

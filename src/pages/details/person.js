@@ -101,11 +101,11 @@ export default function Person() {
             cover={
               <img
                 alt="example"
-                src="https://avatars.githubusercontent.com/u/56569970?v=4"
+                src="https://viapi-oss.oss-cn-shanghai.aliyuncs.com/doc/imageenhan/enhancement.png"
               />
             }
           >
-            <Meta title="孔乙己拉夫米" description="生死看淡不服就干！" />
+            <Meta title="曹测试" description="二次开发做减法" />
             <div className="info">
               <p>
                 <MyIcon type="icon_infopersonal" className="icon" />
@@ -113,18 +113,9 @@ export default function Person() {
               </p>
               <p>
                 <MyIcon type="icon_address1" className="icon" />
-                广东·深圳
+                重庆
               </p>
-              <p>
-                <MyIcon type="icon_edit" className="icon" />
-                <a
-                  href="https://www.cnblogs.com/kongyijilafumi/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  博客地址
-                </a>
-              </p>
+
               <p>
                 <MyIcon type="icon_github" className="icon" />
                 <a
@@ -135,19 +126,9 @@ export default function Person() {
                   github地址
                 </a>
               </p>
-              <p>
-                <MyIcon className="icon" type="icon_QQ" />
-                <a
-                  href="https://qm.qq.com/cgi-bin/qm/qr?k=Wo_kXUOA-mTBviZ6gF4H912AKdE5vTML&jump_from=webapi"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  qq交流群
-                </a>
-              </p>
+
             </div>
             <div className="tags">
-              <div className="title">标签</div>
               <div className="wrapper">
                 {tags.map((item) => (
                   <Tag color={item.color} key={item.color}>

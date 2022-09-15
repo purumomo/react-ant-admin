@@ -33,7 +33,7 @@ const LayoutHeader = ({ children }) => {
     <Header className="header">
       <div className="logo">
         <img src={logo} alt="logo"></img>
-        <span>react-ant-admin</span>
+        <span>大恒管理系统建设奖金分配系统</span>
       </div>
       {children}
       <div className="right">
