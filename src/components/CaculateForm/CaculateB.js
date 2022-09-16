@@ -1,7 +1,6 @@
 import { Button, Form, Input, InputNumber, Select } from 'antd';
-import React, { Fragment } from 'react'
 import './Caculate.css'
-// import React, { useState } from 'react';
+import React, { useState } from 'react';
 const { Option } = Select;
 
 
@@ -29,7 +28,6 @@ const { Option } = Select;
 //     });
 //   };
 
-
 //   const onCurrencyChange = (newCurrency) => { //构建可以更改设计类型的函数
 //     if (!('currency' in value)) {
 //       setCurrency(newCurrency);
@@ -53,9 +51,6 @@ const onChange = (value) => {
   console.log(`selected ${value}`);
 };
 
-
-
-  
       
 //       = <InputNumber type="text" value={value.number || number} onChange = {setNumber} //第二个输出栏
 //         style={{
@@ -119,15 +114,35 @@ const onChange = (value) => {
 // export default App;
 
 
-
-
-
 const Component = React.Component
+
+function Checkmod() {
+  const [mod, setMod] = useState("defaultvalue");
+  return (
+    <div className='selectcontainer'>
+      <Select>
+        onChange ={(e) => {
+          const selectedMod = e.target.value;
+          setMod(selectedMod);
+        }}
+          <Option value="rmb1">BIM设计</Option>
+          <Option value="dollar">工程项目装配式</Option>
+          <Option value="dollar1">海绵城市设计</Option>
+          <Option value="dollar2">老旧小区改造</Option>
+          <Option value="dollar3">内装设计</Option>
+          <Option value="dollar4">智能化设计</Option>
+          <Option value="dollar6">中央空调设计</Option>
+          <Option value="dollar5">住宅绿建设计</Option>
+      </Select>
+      {mod}
+    </div>
+  )
+}
+
+
 class App extends Component{
-  
     //构造函数
-    constructor(props){
-        //      
+    constructor(props){     
         super(props)
         this.state = {
             //定义变量 这是数据            
@@ -141,26 +156,27 @@ class App extends Component{
             sum5:0,
             sum6:0,
             sum7:0,
+            sum8:0,
+            sum9:0,
         }
     }
+
     render(){
         return(//框架
+        
             <Form.Item
-            name="price"
-            label="项目总设计费用（元）">
-
-            <div className='zhonglei'>
-            <Select
+            // label="项目总设计费用（元）"
+            >
+            <div className='kind'>
+            {/* <Select
             style={{
             width: 300,
             margin: '0 8px',
             }}
-            placeholder="选择一种设计类型"
-            onChange={onChange}
-            filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
+            placeholder="请选择一种设计类型"
             >
 
-            <Option onClick={this.add2.bind(this)}>BIM设计</Option>
+            <Option value="rmb1" label='rmb1'>BIM设计</Option>
             <Option value="dollar">工程项目装配式</Option>
             <Option value="dollar1">海绵城市设计</Option>
             <Option value="dollar2">老旧小区改造</Option>
@@ -168,12 +184,12 @@ class App extends Component{
             <Option value="dollar4">智能化设计</Option>
             <Option value="dollar6">中央空调设计</Option>
             <Option value="dollar5">住宅绿建设计</Option>
-            </Select>
+            </Select> */}
             </div>
 
             <div className='table'>
-                <input value = {this.state.number1} onChange = {this.inputchange_num1.bind(this)}/><br />
-                {/* <input value = {this.state.number2} onChange = {this.inputchange_num2.bind(this)}/><br /> */}
+                项目面积(平方) : <input value = {this.state.number2} onChange = {this.inputchange_num2.bind(this)}/><br />
+                项目总设计费用（元）:<input value = {this.state.sum9} /><br />
                 设计组奖金 = <input value = {this.state.sum}/><br />
                 施工图奖金 = <input value = {this.state.sum1}/><br />
                 建筑 = <input value = {this.state.sum2}/><br />
@@ -182,14 +198,19 @@ class App extends Component{
                 电气 = <input value = {this.state.sum5}/><br />
                 暖通 = <input value = {this.state.sum6}/><br />
                 估算 = <input value = {this.state.sum7}/><br />
+                景观 = <input value = {this.state.sum8}/><br />
+                车库引导系统 = <input value = {this.state.sum10}/><br />
             </div> 
             
             <div>
-                <Button type="primary" onClick={this.add2.bind(this)}>BIM设计奖金计算</Button>
-                <Button type="primary" onClick={this.add3.bind(this)}>工程项目装配式</Button>
-                <Button type="primary" onClick={this.add2.bind(this)}>BIM计算</Button>
-                <Button type="primary" onClick={this.add2.bind(this)}>BIM计算</Button>
-                <Button type="primary" onClick={this.add2.bind(this)}>BIM计算</Button>
+                <Button type="primary" onClick={this.add2.bind(this)}>BIM设计奖金</Button>
+                <Button type="primary" onClick={this.add3.bind(this)}>装配式建筑设计</Button>
+                <Button type="primary" onClick={this.add4.bind(this)}>海绵城市设计</Button>
+                <Button type="primary" onClick={this.add5.bind(this)}>智能化设计</Button>
+                <Button type="primary" onClick={this.add6.bind(this)}>中央空调设计</Button>
+                <Button type="primary" onClick={this.add7.bind(this)}>老小区改造</Button>
+                <br/><br/>
+                <Button type="primary" onClick={this.add2.bind(this)}>计算</Button>
             </div> 
             <div></div>
             </Form.Item>     
@@ -208,15 +229,162 @@ class App extends Component{
     }
     //计算规则 bim
     add2(BIM设计){
-        var a = parseFloat(this.state.number1) //设计费用
-        // var b = parseFloat(this.state.number2) 
-        var c = a*1.5*0.6 //设计组奖金
-        var d = a*1.5*0.4//施工图设计奖金
-        var e = a*1.5*0.6*0.3//建筑
-        var f = a*1.5*0.6*0.14//结构
-        var g = a*1.5*0.6*0.18//给排水
-        var h = a*1.5*0.6*0.2//电气
-        var i = a*1.5*0.6*0.18//暖通
+        var b = parseFloat(this.state.number2).toFixed(2) //平方
+        var a = b*1.5.toFixed(2);   //设计费用
+        var c = a*0.6.toFixed(2) //设计组奖金
+        var d = a*0.4.toFixed(2)//施工图设计奖金
+        var e = a*0.6*0.3//建筑
+        var f = a*0.6*0.14//结构
+        var g = a*0.6*0.18//给排水
+        var h = a*0.6*0.2//电气
+        var i = a*0.6*0.18//暖通
+        var j = a*0//景观
+        var z = 0 //估算
+        var cheku = 0
+        this.setState({
+          sum: c
+        })    
+        this.setState({
+          sum1: d
+        })
+        this.setState({
+          sum2: e
+        })       
+        this.setState({
+          sum3: f
+        })       
+        this.setState({
+          sum4: g
+        })               
+        this.setState({
+          sum5: h
+        })        
+        this.setState({
+          sum6: i
+        })        
+        this.setState({
+          sum7: z
+        })
+        this.setState({
+          sum8: j
+        })
+        this.setState({
+          sum9: a
+        })
+        this.setState({
+          sum10: cheku
+        })                
+    }
+
+    add3(装配式建筑设计){
+      var b = parseFloat(this.state.number2) //设计费用
+      var a = b*1 //项目面积
+      var c = a*0.4 //设计组奖金
+      var d = a*0.6//施工图设计奖金
+      var e = a*0.4*0.25//建筑
+      var f = a*0.4*0.5//结构
+      var g = a*0.4*0.05//给排水
+      var h = a*0.4*0.15//电气
+      var i = a*0.4*0.05//暖通
+      var j = a*0//景观
+      var z = 0// 估算
+      var cheku = 0
+      this.setState({
+        sum: c
+      })    
+      this.setState({
+        sum1: d
+      })
+      this.setState({
+        sum2: e
+      })       
+      this.setState({
+        sum3: f
+      })       
+      this.setState({
+        sum4: g
+      })               
+      this.setState({
+        sum5: h
+      })        
+      this.setState({
+        sum6: i
+      })        
+      this.setState({
+        sum7: z
+      })
+      this.setState({
+        sum8: j
+      })
+      this.setState({
+        sum9: a
+      })
+      this.setState({
+        sum10: cheku
+      })
+      
+  }
+  add4(海绵城市设计){
+    var b = parseFloat(this.state.number2) //设计费用
+    var a = b*1 //项目面积
+    var c = a*0.3 //设计组奖金
+    var d = a*0.7//施工图设计奖金
+    var e = a*0.3*0.1//建筑
+    var f = a*0.3*0.05//结构
+    var g = a*0.3*0.55//给排水
+    var h = a*0.3*0.15//电气
+    var i = a*0.3*0.05//暖通
+    var j = a*0.3*0.3//景观
+    var z = 0// 估算
+    var cheku = 0
+    
+    this.setState({
+      sum: c
+    })    
+    this.setState({
+      sum1: d
+    })
+    this.setState({
+      sum2: e
+    })       
+    this.setState({
+      sum3: f
+    })       
+    this.setState({
+      sum4: g
+    })               
+    this.setState({
+      sum5: z
+    })        
+    this.setState({
+      sum6: z
+    })        
+    this.setState({
+      sum7: z
+    })
+    this.setState({
+      sum8: j
+    })
+    this.setState({
+      sum9: a
+    })
+    this.setState({
+      sum10: cheku
+    })
+    }
+    add5(智能化设计){
+      var b = parseFloat(this.state.number2) //设计费用
+      var a = b*1 //项目面积
+      var c = a*0.5*0.3 //设计组奖金
+      var d = a*0.5*0.7//施工图设计奖金
+      var e = a*0//建筑
+      var f = a*0//结构
+      var g = a*0//给排水
+      var h = a*0//电气
+      var i = a*0//暖通
+      var j = a*0//景观
+      var z = 0// 估算
+      var cheku = a*0.4
         this.setState({
           sum: c
         })    
@@ -240,18 +408,77 @@ class App extends Component{
         })        
         this.setState({
           sum7: f
+        })
+        this.setState({
+          sum8: j
+        })
+        this.setState({
+          sum9: a
+        })
+        this.setState({
+          sum10: cheku
+        })
+        }
+    add6(中央空调设计){
+      var b = parseFloat(this.state.number2) //设计费用
+      var a = b*1 //项目面积
+      var c = a*0.3 //设计组奖金
+      var d = a*0.7//施工图设计奖金
+      var e = a*0//建筑
+      var f = a*0//结构
+      var g = a*0//给排水
+      var h = a*0//电气
+      var i = a*0//暖通
+      var j = a*0//景观
+      var z = 0// 估算
+      var cheku = a*0
+        this.setState({
+          sum: c
+        })    
+        this.setState({
+          sum1: d
+        })
+        this.setState({
+          sum2: e
+        })       
+        this.setState({
+          sum3: f
+        })       
+        this.setState({
+          sum4: g
+        })               
+        this.setState({
+          sum5: h
         })        
-    }
-
-    add3(工程项目装配式){
-      var a = parseFloat(this.state.number1) //设计费用
-      var c = a*1.5*0.4 //设计组奖金
-      var d = a*1.5*0.6//施工图设计奖金
-      var e = a*1.5*0.6*0.25//建筑
-      var f = a*1.5*0.6*0.5//结构
-      var g = a*1.5*0.6*0.05//给排水
-      var h = a*1.5*0.6*0.15//电气
-      var i = a*1.5*0.6*0.05//暖通
+        this.setState({
+          sum6: i
+        })        
+        this.setState({
+          sum7: f
+        })
+        this.setState({
+          sum8: j
+        })
+        this.setState({
+          sum9: a
+        })
+        this.setState({
+          sum10: cheku
+        })
+        }
+  add7(老小区改造){
+    var b = parseFloat(this.state.number2) //设计费用
+    var a = b*1 //项目面积
+    var c = a*0.3 //设计组奖金
+    var d = a*0.7//施工图设计奖金
+    var e = a*0//建筑
+    var f = a*0//结构
+    var g = a*0//给排水
+    var h = a*0//电气
+    var i = a*0//暖通
+    var j = a*0//景观
+    var z = 0// 估算
+    var cheku = a*0
       this.setState({
         sum: c
       })    
@@ -275,8 +502,17 @@ class App extends Component{
       })        
       this.setState({
         sum7: f
-      })        
-  }
+      })
+      this.setState({
+        sum8: j
+      })
+      this.setState({
+        sum9: a
+      })
+      this.setState({
+        sum10: cheku
+      })
+      }
 }
 
 
